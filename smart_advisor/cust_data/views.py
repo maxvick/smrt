@@ -5,3 +5,6 @@ from django.http import HttpResponse
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
+
+def not_yet(request):
+    return HttpResponse("nothing defd yet")

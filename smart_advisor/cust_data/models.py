@@ -1,6 +1,5 @@
 from django.db import models
-from django.db.models import Sum
-from django.db.models import Q
+from django.db.models import Sum, Q
 
 # Create your models here. --THIS is cust_data.models
 
@@ -25,6 +24,17 @@ class Person(models.Model):
     on_delete=models.SET_NULL, related_name='res_addr')
     postal = models.ForeignKey(Address, null=True, 
     on_delete=models.SET_NULL, related_name='postal_addr')
+
+    def listAccounts(self):
+        retVal = [] #placeholder for list of tuples acc + balance
+
+        #get a queryset of all of person's accounts
+        myAcc = Account.objects.filter(owner==self.id)
+        
+        myAcc = myAcc.annotate(balance=Sum('transaction__value'))
+        
+        #end of listAccounts
+        return myAcc
 
 class Account(models.Model):
     name = models.CharField(max_length=100)
