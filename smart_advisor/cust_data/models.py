@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.db.models import Sum, Q
 
 # Create your models here. --THIS is cust_data.models
@@ -35,6 +36,10 @@ class Person(models.Model):
         
         #end of listAccounts
         return myAcc
+
+    def get_absolute_url(self):
+        #end of gau
+        return reverse('person-detail', kwargs={'pk': self.pk})
 
 class Account(models.Model):
     name = models.CharField(max_length=100)
