@@ -7,7 +7,7 @@ from django.views.generic.detail import DetailView
 from .models import Person
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return HttpResponse("Hello, world.")
 
 def not_yet(request):
     return HttpResponse("nothing defd yet")
